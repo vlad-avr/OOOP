@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include "Dice.h"
 
 template <typename T>
 class Vector
@@ -23,11 +24,18 @@ public:
 		}
 	}
 
-	void print() {
-		unsigned int N = arr.size();
-		for (int i = 0; i < N; i++) {
-			std::cout << arr[i] << "\n";
+	T* get(unsigned int i) {
+		if (i >= arr.size()) {
+			return NULL;
+		}
+		else {
+			return &arr[i];
 		}
 	}
+
+	unsigned int size() {
+		return arr.size();
+	}
+
 };
 

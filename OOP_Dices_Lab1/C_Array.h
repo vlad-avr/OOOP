@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 
 template<typename T>
 class C_Array
@@ -20,9 +21,14 @@ public:
 			arr[id] = val;
 		}
 	}
-	void print() {
-		for (int i = 0; i < _size; i++) {
-			std::cout << arr[i] << "\n";
+
+
+	T* get(unsigned int index) {
+		if (index >= _size) {
+			return NULL;
+		}
+		else {
+			return &arr[index];
 		}
 	}
 };

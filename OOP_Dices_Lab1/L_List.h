@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 template<typename T>
 class L_List
 {
@@ -27,7 +29,7 @@ public:
 	void add(T val) {
 		if (!beg) {
 			beg = new Node(val);
-			//end = beg->next;
+			end = beg;
 		}
 		else {
 			end->next = new Node(val);
@@ -48,13 +50,6 @@ public:
 		temp->data = val;
 	}
 
-	void print() {
-		Node* temp = beg;
-		while (temp != end) {
-			std::cout << temp->data << "\n";
-			temp = temp->next;
-		}
-	}
 
 };
 

@@ -1,0 +1,2 @@
+D:\Git Desktop\OOOP\OOP_Dices_Lab1\Debug\OOP_Dices_Lab1.exe
+D:\Git Desktop\OOOP\OOP_Dices_Lab1\Debug\OOP_Dices_Lab1.pdb

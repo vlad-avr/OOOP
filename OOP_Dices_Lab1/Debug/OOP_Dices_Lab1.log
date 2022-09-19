@@ -1,0 +1,7 @@
+﻿  Dice.cpp
+  OOP_Dices_Lab1.cpp
+D:\Git Desktop\OOOP\OOP_Dices_Lab1\OOP_Dices_Lab1.cpp(14,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Git Desktop\OOOP\OOP_Dices_Lab1\OOP_Dices_Lab1.cpp(29,20): warning C4018: '<': signed/unsigned mismatch
+  Vector.cpp
+  Generating Code...
+  OOP_Dices_Lab1.vcxproj -> D:\Git Desktop\OOOP\OOP_Dices_Lab1\Debug\OOP_Dices_Lab1.exe
