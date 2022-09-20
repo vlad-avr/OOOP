@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "Dice.h"
+#include <cassert>
 
 template <typename T>
 class Vector
@@ -16,25 +17,29 @@ public:
 	}
 
 	void set(T val, unsigned int id) {
-		if (id >= arr.size()) {
-			return;
-		}
-		else {
-			arr[id] = val;
-		}
+		*get(id) = val;
 	}
 
 	T* get(unsigned int i) {
-		if (i >= arr.size()) {
-			return NULL;
-		}
-		else {
-			return &arr[i];
-		}
+		assert(i < arr.size());
+		return &arr[i];
 	}
 
 	unsigned int size() {
 		return arr.size();
+	}
+
+	void print() {
+		unsigned int size = arr.size();
+		for (int i = 0; i < size; i++) {
+			std::cout << arr[i];
+		}
+	}
+
+	void del(unsigned int id) {
+		assert(id < arr.size());
+		typename std::vector<T>::iterator iter = arr.begin() + id;
+		arr.erase(iter);
 	}
 
 };

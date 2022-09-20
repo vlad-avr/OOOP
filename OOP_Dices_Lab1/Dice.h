@@ -3,7 +3,7 @@
 #include <iostream>
 #include "C_Array.h"
 #include <random>
-
+#include <cassert>
 
 
 class Dice
@@ -23,7 +23,9 @@ private:
 
 public:
 
-
+	Dice() {
+		
+	}
 
 	Dice(unsigned short face_count) {
 		_face_count = face_count;
@@ -60,6 +62,15 @@ public:
 			Face** temp = faces->get(i);
 			std::cout << (*temp)->val << " : " << (*temp)->possib << "\n";
 		}
+	}
+
+	Face* get_face(unsigned int id) {
+		assert(id < faces->size());
+		return (*faces->get(id));
+	}
+
+	unsigned int face_count() {
+		return faces->size();
 	}
 
 };

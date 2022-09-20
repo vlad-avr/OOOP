@@ -36,18 +36,58 @@ public:
 			end = end->next;
 		}
 	}
-
+	
 	void set(unsigned int ID, T val) {
+		Node* temp = get(ID);
+		if (temp) {
+			temp = val;
+		}
+	}
+
+	void print() {
 		Node* temp = beg;
-		while (ID >= 0) {
-			if (!temp) {
-				return;
+		while (temp != end) {
+			std::cout << temp->data << "\n";
+			temp = temp->next;
+		}
+		std::cout << temp->data << "\n";
+	}
+
+	void del(unsigned int id) {
+		Node* temp = NULL;
+		if (id == 0) {
+			if (beg == end) {
+				temp = beg;
+				beg = NULL;
+				delete temp;
 			}
 			else {
-				temp = temp->next;
+				temp = beg;
+				beg = beg->next;
+				delete temp;
 			}
 		}
-		temp->data = val;
+		else {
+			Node* temp = get(id - 1);
+			if (temp && temp->next) {
+				if (temp->next == end) {
+					end = temp;
+				}
+				Node* t = temp->next;
+				temp->next = temp->next->next;
+				temp = temp->next;
+				delete t;
+			}
+		}
+	}
+
+	Node* get(unsigned int id) {
+		Node* temp = beg;
+		while (id > 0 && temp) {
+			temp = temp->next;
+			id--;
+		}
+		return temp;
 	}
 
 
