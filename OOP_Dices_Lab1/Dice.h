@@ -8,7 +8,8 @@
 
 class Dice
 {
-private:
+
+public:
 	struct Face {
 		double val;
 		double possib;
@@ -17,6 +18,8 @@ private:
 			this->possib = possib;
 		}
 	};
+private:
+
 	unsigned short _face_count;
 	C_Array<Face*>* faces = NULL;
 
@@ -67,6 +70,10 @@ public:
 	Face* get_face(unsigned int id) {
 		assert(id < faces->size());
 		return (*faces->get(id));
+	}
+
+	C_Array<Face*>* get_faces() {
+		return faces;
 	}
 
 	unsigned int face_count() {
