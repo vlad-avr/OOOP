@@ -53,10 +53,11 @@ bool comp(Dice::Face** f1, Dice::Face** f2) {
 	}
 }
 
+
 int main()
 {
 	srand(time(0));
-	Vector<Vector<Dice>*>* vec = new Vector<Vector<Dice>*>;
+	/*Vector<Vector<Dice>*>* vec = new Vector<Vector<Dice>*>;
 	Vector<Dice>* dices1 = new Vector<Dice>;
 	dices1->append(Dice(8));
 	dices1->get(0)->auto_gen(0, 10);
@@ -65,13 +66,23 @@ int main()
 	dices1->append(Dice(4));
 	dices1->get(2)->auto_gen(1, 4);
 	dices1->print();
-	dices1->insert_sort(d_comp);
+	dices1->qsort(d_comp);
 	dices1->print();
 	dices1->get(0)->get_faces()->insert_sort(comp);
 	dices1->get(1)->get_faces()->insert_sort(comp);
 	dices1->get(2)->get_faces()->insert_sort(comp);
-	dices1->print();
-
+	dices1->print();*/
+	/*Vector<Vector<Dice>*>* vec = new Vector<Vector<Dice>*>;
+	Vector<Dice>* list = new Vector<Dice>;
+	for (int i = 0; i < 20; i++) {
+		list->append(Dice(2 * (i + 1)));
+		list->get(i)->auto_gen(1, 2 * (i + 1) + 1);
+		list->get(i)->get_faces()->msort(comp);
+	}
+	vec->append(list);
+	list->msort(d_comp);
+	list->print();
+	get_sums(vec)->print();*/
 	/*Vector<Dice>* dices2 = new Vector<Dice>;
 	dices2->append(Dice(4));
 	dices2->get(0)->auto_gen(0, 3);
@@ -91,16 +102,16 @@ int main()
 	vec->append(dices2);
 	vec->append(dices3);
 	get_sums(vec)->print();*/
-	/*L_List<Dice>* list = new L_List<Dice>;
-	list->add(Dice(4));
-	list->get(0)->data.auto_gen(1, 4);
-	list->add(Dice(6));
-	list->get(1)->data.auto_gen(1, 6);
+	L_List<Dice>* list = new L_List<Dice>;
 	list->add(Dice(12));
-	list->get(2)->data.auto_gen(1, 12);
+	list->get(0)->data.auto_gen(1, 12);
+	list->add(Dice(4));
+	list->get(1)->data.auto_gen(1, 4);
+	list->add(Dice(6));
+	list->get(2)->data.auto_gen(1, 6);
 	list->print();
-	list->del(2);
-	list->print();*/
+	list->qsort(d_comp);
+	list->print();
 
 /*	C_Array<Dice>* arr = new C_Array<Dice>(3);
 	arr->set(Dice(4), 0);
@@ -110,7 +121,7 @@ int main()
 	arr->set(Dice(8), 2);
 	arr->get(2)->auto_gen(1, 8);
 	arr->print();
-	arr->del(1);
+	arr->msort(d_comp);
 	arr->print();*/
 }
 
