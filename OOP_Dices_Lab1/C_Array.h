@@ -2,9 +2,10 @@
 
 #include <iostream>
 #include <cassert>
+#include "Container.h"
 
 template<typename T>
-class C_Array
+class C_Array : public Container<T>
 {
 private:
 	unsigned int _size;
@@ -38,8 +39,8 @@ private:
 				r_pointer++;
 			}
 			swap(r_pointer, end);
-			qsort_rec(beg, r_pointer - 1);
-			qsort_rec(r_pointer + 1, end);
+			qsort_rec(comp, beg, r_pointer - 1);
+			qsort_rec(comp, r_pointer + 1, end);
 		}
 	}
 
@@ -109,6 +110,16 @@ public:
 		return _size;
 	}
 
+	void add(T val) {
+		T* new_arr = new T[_size + 1];
+		for (int i = 0; i < _size; i++) {
+			new_arr[i] = arr[i];
+		}
+		_size++;
+		arr = new_arr;
+		arr[_size - 1] = val;
+	}
+
 	T* get(unsigned int index) {
 		assert(index < _size);
 		return &arr[index];
@@ -149,11 +160,15 @@ public:
 	}
 
 	void qsort(bool (*comp)(T*, T*)) {
-		qsort_rec(comp, arr[0], arr[_size-1]);
+		qsort_rec(comp, &arr[0], &arr[_size-1]);
 	}
 
 	void msort(bool (*comp)(T*, T*)) {
 		mergeSort(arr, 0, _size - 1, comp);
+	}
+
+	void custom_sort(void (*sort)(T*, int, bool (*)(T*, T*)), bool (*comp)(T*, T*)) {
+		sort(arr, _size, comp);
 	}
 
 };

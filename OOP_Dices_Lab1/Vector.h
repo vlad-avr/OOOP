@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "Dice.h"
 #include <cassert>
+#include "Container.h"
 
 template <typename T>
-class Vector
+class Vector: public Container<T>
 {
 private:
 	std::vector<T> arr;
@@ -100,7 +100,7 @@ private:
 
 public:
 
-	void append(T item) {
+	void add(T item) {
 		arr.push_back(item);
 	}
 
@@ -153,6 +153,10 @@ public:
 
 	void msort(bool (*comp)(T*, T*)) {
 		mergeSort(arr, 0,arr.size()-1, comp);
+	}
+
+	void custom_sort(void (*sort)(std::vector<T>*, int, bool (*)(T*, T*)), bool (*comp)(T*, T*)) {
+		sort(&arr, arr.size(), comp);
 	}
 
 };
