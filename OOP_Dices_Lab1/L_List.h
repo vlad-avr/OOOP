@@ -1,9 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include "Container.h"
 
 template<typename T>
-class L_List
+class L_List : public Container<T>
 {
 private:
 	struct Node {
@@ -20,6 +21,7 @@ private:
 	Node* beg;
 	Node* end;
 	Node* sort_list;
+	unsigned int _size;
 	void sorted_insert(bool (*comp)(T*, T*), Node* node) {
 		if (!sort_list || !comp(&(sort_list->data), &(node->data))) {
 			node->next = sort_list;
@@ -176,11 +178,29 @@ private:
 		*headRef = sorted_merge(a, b, comp);
 	}
 
+	Node* get_node(unsigned int id) {
+		Node* temp = beg;
+		while (id > 0 && temp) {
+			temp = temp->next;
+			id--;
+		}
+		return temp;
+	}
 
 public:
 	L_List() {
 		beg = NULL;
 		end = beg;
+	}
+
+	unsigned int size() {
+		Node* temp = beg;
+		int i = 1;
+		while (temp != end) {
+			temp = temp->next;
+			i++;
+		}
+		return i;
 	}
 
 	void add(T val) {
@@ -194,10 +214,10 @@ public:
 		}
 	}
 	
-	void set(unsigned int ID, T val) {
-		Node* temp = get(ID);
+	void set( T val, unsigned int ID ) {
+		Node* temp = get_node(ID);
 		if (temp) {
-			temp = val;
+			temp->data = val;
 		}
 	}
 
@@ -225,7 +245,7 @@ public:
 			}
 		}
 		else {
-			Node* temp = get(id - 1);
+			Node* temp = get_node(id - 1);
 			if (temp && temp->next) {
 				if (temp->next == end) {
 					end = temp;
@@ -238,13 +258,13 @@ public:
 		}
 	}
 
-	Node* get(unsigned int id) {
+	T* get(unsigned int id) {
 		Node* temp = beg;
 		while (id > 0 && temp) {
 			temp = temp->next;
 			id--;
 		}
-		return temp;
+		return &temp->data;
 	}
 
 	void insert_sort(bool (*comp)(T*, T*)) {
@@ -268,6 +288,12 @@ public:
 		merge_sort(&beg, comp);
 		get_end();
 	}
+
+	void custom_sort(Node* (*sort)(Node*, bool (*)(T*, T*)), bool (*comp)(T*, T*)) {
+		beg = sort(beg, comp);
+		get_end(); 
+	}
+
 
 };
 

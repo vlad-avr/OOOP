@@ -80,5 +80,14 @@ public:
 		return faces->size();
 	}
 
+	friend std::ostream& operator<<(std::ostream& os, Dice& dice) {
+		unsigned int size = dice.face_count();
+		for (int i = 0; i < size; i++) {
+			os << dice.get_face(i)->val << " : " << dice.get_face(i)->possib << "\n";
+		}
+		os << "\n";
+		return os;
+	}
+
 };
 

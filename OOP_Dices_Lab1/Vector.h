@@ -100,6 +100,7 @@ private:
 
 public:
 
+
 	void add(T item) {
 		arr.push_back(item);
 	}
@@ -158,6 +159,7 @@ public:
 	void custom_sort(void (*sort)(std::vector<T>*, int, bool (*)(T*, T*)), bool (*comp)(T*, T*)) {
 		sort(&arr, arr.size(), comp);
 	}
+
 
 };
 

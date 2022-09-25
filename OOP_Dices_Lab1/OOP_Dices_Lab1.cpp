@@ -16,23 +16,8 @@ struct Sum {
 		this->possib = possib;
 	}
 
+
 };
-
-std::ostream& operator<<(std::ostream& os, Dice& dice) {
-	unsigned int size = dice.face_count();
-	for (int i = 0; i < size; i++) {
-		os << dice.get_face(i)->val << " : "  << dice.get_face(i)->possib << "\n";
-	}
-	os << "\n";
-	return os;
-}
-
-std::ostream& operator<<(std::ostream& os, Container<Dice>& cont) {
-	cont.print();
-	os << "\n";
-	return os;
-}
-
 
 std::ostream& operator<<(std::ostream& os, Vector<Sum>*& vec) {
 	vec->print();
@@ -143,7 +128,7 @@ bool comp(Dice::Face** f1, Dice::Face** f2) {
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
 	
 	srand(time(0));
