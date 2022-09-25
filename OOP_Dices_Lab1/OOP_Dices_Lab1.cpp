@@ -1,5 +1,5 @@
 
-
+#define DOCTEST_CONFIG_IMPLEMENT
 #include <iostream>
 #include "L_List.h"
 #include "Dice.h"
@@ -31,69 +31,6 @@ std::ostream& operator<<(std::ostream& os, Sum& s) {
 	return os;
 }
 
-
-int findMax(int arr[], int n, bool (*cmp)(int*, int*))
-{
-	int i, max = arr[0], cnt = 0;
-	for (i = 1; i < n; i++)
-	{
-		if (cmp(&arr[i], &max))
-			max = arr[i];
-	}
-	while (max > 0)
-	{
-		cnt++;
-		max = max / 10;
-	}
-
-	return cnt;
-}
-
-void bucketSort(int arr[], int** bucket, int n, bool (*cmp)(int*, int*))
-{
-	static int i, j[10], k, l, d = 1;
-	int c;
-	c = findMax(arr, n, cmp);
-
-	for (int m = 0; m < c; m++)
-	{
-		for (i = 0; i < 10; i++)
-			j[i] = 0;
-		for (i = 0; i < n; i++)
-		{
-			k = (arr[i] / d) % 10;
-			bucket[k][j[k]] = arr[i];
-			j[k]++;
-		}
-
-		l = 0;
-		for (i = 0; i < 10; i++)
-		{
-			for (k = 0; k < j[i]; k++)
-			{
-				arr[l] = bucket[i][k];
-				l++;
-			}
-		}
-		d *= 10;
-	}
-}
-
-void b_sort(int arr[], int size, bool(*cmp)(int*, int*)) {
-	int* bucket[10];
-	for (int i = 0; i < 10; i++)
-		bucket[i] = new int[size];
-	bucketSort(arr, bucket, size, cmp);
-}
-
-bool num_cmp(int* num1, int* num2) {
-	if (*num1 > *num2) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
 
 Vector<Vector<Sum>*>* get_sums(Container<Container<Dice>*>*);
 Vector<Sum>* get_sums_rec(Container<Dice>*, unsigned int);
@@ -130,6 +67,16 @@ bool comp(Dice::Face** f1, Dice::Face** f2) {
 
 int main(int argc, char** argv)
 {
+
+	doctest::Context context;
+
+	context.applyCommandLine(argc, argv);
+
+	int res = context.run();
+
+	if (context.shouldExit()) {
+		return res;          
+	}
 	
 	srand(time(0));
 	
@@ -187,6 +134,8 @@ int main(int argc, char** argv)
 	std::cout << "\nBALLS3\n";
 	(*container.get(2))->print();
 	get_sums(&container)->print();
+
+	return res;
 }
 
 

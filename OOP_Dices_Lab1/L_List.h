@@ -6,7 +6,7 @@
 template<typename T>
 class L_List : public Container<T>
 {
-private:
+public:
 	struct Node {
 	public:
 
@@ -17,6 +17,10 @@ private:
 			this->next = next;
 		}
 	};
+
+
+private:
+
 
 	Node* beg;
 	Node* end;

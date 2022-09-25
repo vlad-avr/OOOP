@@ -4,7 +4,7 @@
 #include "C_Array.h"
 #include <random>
 #include <cassert>
-
+#include "doctest.h"
 
 class Dice
 {
@@ -89,5 +89,6 @@ public:
 		return os;
 	}
 
+	
 };
 
