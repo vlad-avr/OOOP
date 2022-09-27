@@ -54,6 +54,12 @@ void in_sort(T* arr, int _size, bool(*comp)(T*, T*)) {
 	}
 }
 
+Dice* gen_rand() {
+	unsigned int face_count = (rand() % 4 + 1) * 2;
+	Dice* d = new Dice(face_count);
+	d->auto_gen(0, face_count);
+	return d;
+}
 
 bool comp(Dice::Face** f1, Dice::Face** f2) {
 	if ((*f1)->val > (*f2)->val) {
@@ -79,8 +85,7 @@ int main(int argc, char** argv)
 	}
 	
 	srand(time(0));
-	
-	Vector<Dice> d_vec;
+	/*Vector<Dice> d_vec;
 	Container<Dice>& dice = d_vec;
 	dice.add(Dice(4));
 	dice.get(0)->auto_gen(1, 4);
@@ -133,7 +138,7 @@ int main(int argc, char** argv)
 	(*container.get(1))->print();
 	std::cout << "\nBALLS3\n";
 	(*container.get(2))->print();
-	get_sums(&container)->print();
+	get_sums(&container)->print();*/
 
 	return res;
 }

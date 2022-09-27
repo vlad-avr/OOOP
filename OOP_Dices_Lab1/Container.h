@@ -19,6 +19,6 @@ public:
 	virtual void insert_sort(bool (*comp)(T*, T*)) { std::cout << "\nERROR: Abstract class function call, invalid function parameters\n"; }
 	virtual void custom_sort(void (*sort)(T*, int, bool (*)(T*, T*)), bool (*comp)(T*, T*)) { std::cout << "\nERROR: Abstract class function call, invalid function parameters\n OR function call in L_List class (impossible to override with L_List custom_sort() functios dur to structure incompatibility\n"; }
 	virtual unsigned int size() { std::cout << "\nERROR: Abstract class function call, invalid function parameters\n"; return 0; };
-
+	virtual void gen_rand(unsigned int num, T* get_rand_vals()){ std::cout << "\nERROR: Abstract class function call, invalid function parameters\n"; }
 };
 

@@ -298,6 +298,24 @@ public:
 		get_end(); 
 	}
 
+	void gen_rand(unsigned int num, T* get_rand_vals()) {
+		unsigned int _size = size();
+		if (num < _size) {
+			for (int i = 0; i < num; i++) {
+				set(*(get_rand_vals()), i);
+			}
+		}
+		else {
+			unsigned int extra = num - _size;
+			for (int i = 0; i < _size; i++) {
+				set(*(get_rand_vals()), i);
+			}
+			for (int i = 0; i < extra; i++) {
+				add(*(get_rand_vals()));
+			}
+		}
+	}
+
 
 };
 

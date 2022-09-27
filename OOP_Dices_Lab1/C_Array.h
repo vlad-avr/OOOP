@@ -171,5 +171,17 @@ public:
 		sort(arr, _size, comp);
 	}
 
+	void gen_rand(unsigned int num, T* (*get_rand_val)()) {
+
+		if (num >= _size) {
+			arr = new T[num];
+			_size = num;
+		}
+
+		for (int i = 0; i < _size; i++) {
+			arr[i] = *get_rand_val();
+		}
+	}
+
 };
 

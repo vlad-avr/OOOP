@@ -160,6 +160,23 @@ public:
 		sort(&arr, arr.size(), comp);
 	}
 
+	void gen_rand(unsigned int num, T* (*get_rand_val)()) {
+		unsigned int _size = arr.size();
+		if (num < _size) {
+			for (int i = 0; i < num; i++) {
+				arr[i] = *get_rand_val();
+			}
+		}
+		else {
+			unsigned int extra_size = num - _size;
+			for (int i = 0; i < _size; i++) {
+				arr[i] = *get_rand_val();
+			}
+			for (int i = 0; i < extra_size; i++) {
+				add(*get_rand_val());
+			}
+		}
+	}
 
 };
 
